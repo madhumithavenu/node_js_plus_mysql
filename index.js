@@ -26,6 +26,7 @@ connection.connect(err => {
 
 
 app.get('/', (req, res) => {
+    
     res.sendFile(__dirname + '/register.html');
 });
 
