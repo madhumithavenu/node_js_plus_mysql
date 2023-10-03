@@ -6,6 +6,7 @@ const studentRouter = express.Router();
 studentRouter.get("/", homePage);
 studentRouter.post('/submit', insertValues);
 studentRouter.get('/student', getStudent);
+
 studentRouter.get('/delete-student', deleteStudent);
 
 module.exports = studentRouter;
