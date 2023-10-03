@@ -17,7 +17,8 @@ module.exports.insertValues = (req, res) => {
 
     connection.query(sql_query, (err, result) => {
         if (err) return console.log("Error while inserted data " + err);
-        res.json({ 'message ': "insert was successfull", "result": result.insertId });
+        res.redirect("/student");
+        // res.json({ 'message ': "insert was successfull", "result": result.insertId });
     });
 
 };
@@ -28,7 +29,7 @@ module.exports.getStudent = (req, res) => {
     connection.query(sql, (err, result) => {
         if (err) return console.log(err);
 
-        res.render(__dirname + "/students", { studends: result });
+        res.render(__dirname + "/students", { students: result });
         // res.render('students');
     })
 }
