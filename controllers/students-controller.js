@@ -33,3 +33,14 @@ module.exports.getStudent = (req, res) => {
         // res.render('students');
     })
 }
+
+module.exports.deleteStudent = (req, res) => {
+    let sql = "DELETE FROM STUDENTS WHERE ID=?";
+
+    let id = req.query.id;
+    connection.query(sql, [id], (err, result) => {
+        if (err) return console.log(err);
+
+        res.redirect("/student");
+    })
+}

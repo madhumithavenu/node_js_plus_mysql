@@ -11,7 +11,7 @@
     <h1>Students List</h1>
     <table border="2" width="100%">
         <tr>
-            <!-- <th>S.No</th> -->
+            <th>S.No</th>
             <th>Name</th>
             <th>Email</th>
             <th>Mobile</th>
@@ -21,10 +21,11 @@
             <% for(let i = 0; i < students.length; i++) { %>
 
                 <tr>
-                    <!-- <td><%- students[i].id %></td> -->
+                    <td><%- students[i].ID %></td>
                     <td><%- students[i].NAME %></td>
                     <td><%- students[i].EMAIL %></td>
                     <td><%- students[i].MOBILE %></td>
+                    <td><a href="/delete-student?id=<%- students[i].ID %>">Delete</a></td>
                 </tr>
 
             <% } %>
