@@ -8,6 +8,7 @@ module.exports.homePage = (req, res) => {
 };
 
 module.exports.insertValues = (req, res) => {
+    
     console.log(req.body);
 
     const { name, email, mobile } = req.body;
