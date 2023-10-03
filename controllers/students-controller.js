@@ -8,7 +8,7 @@ module.exports.homePage = (req, res) => {
 };
 
 module.exports.insertValues = (req, res) => {
-    
+
     console.log(req.body);
 
     const { name, email, mobile } = req.body;
@@ -21,3 +21,14 @@ module.exports.insertValues = (req, res) => {
     });
 
 };
+
+module.exports.getStudent = (req, res) => {
+    let sql = "SELECT * FROM STUDENTS";
+
+    connection.query(sql, (err, result) => {
+        if (err) return console.log(err);
+
+        res.render(__dirname + "/students", { studends: result });
+        // res.render('students');
+    })
+}
