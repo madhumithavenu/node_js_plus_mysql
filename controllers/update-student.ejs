@@ -8,11 +8,12 @@
 </head>
 
 <body>
-    <h1>Update Register</h1>
-    <form action="/submit" method="POST">
-        <input type="text" name="name" placeholder="Enter name" required><br><br>
-        <input type="email" name="email" placeholder="Enter email" required><br><br>
-        <input type="number" name="mobile" placeholder="Enter Mobile number" required><br><br>
+    <h1>Update Student</h1>
+    <form action="" method="POST">
+        <input type="hidden" name="id" value="<%- student[0].ID %>">
+        <input type="text" name="name" value="<%- student[0].NAME %>" placeholder="Enter name" required><br><br>
+        <input type="email" name="email" value="<%- student[0].EMAIL %>"  placeholder="Enter email" required><br><br>
+        <input type="number" name="mobile" value="<%- student[0].MOBILE %>" placeholder="Enter Mobile number" required><br><br>
         <input type="submit" value="submit">
     </form>
 </body>
