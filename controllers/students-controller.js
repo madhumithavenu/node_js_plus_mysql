@@ -68,3 +68,23 @@ module.exports.updateStudentDetails = (req, res) => {
         res.redirect('/student');
     });
 }
+
+module.exports.searchStudents= (req, res)=>{
+    let sql = "SELECT * FROM STUDENTS";
+    connection.query(sql, (err, result)=>{
+        if(err ) return console.log(err);
+        res.render(__dirname+"/search-students", {students:result});
+       
+    })
+}
+
+module.exports.searchStudentsDetails =(req, res)=>{
+    let name = req.query.name;
+    let email = req.query.email;
+    let mobile = req.query.mobile;
+    let sql = "SELECT * FROM STUDENTS WHERE NAME LIKE '%"+name+"%'AND EMAIL LIKE '%"+email+"%' AND MOBILE LIKE '%"+mobile+"%'";
+    connection.query(sql, (err, result)=>{
+        if(err)console.log(err);
+        res.render(__dirname+"/search-students", {students:result});
+    })
+}
