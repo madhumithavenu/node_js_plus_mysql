@@ -20,3 +20,4 @@ connection.connect(err => {
 
 })
 app.use('/', studentRouter);
+app.use(express.static('public'));

@@ -1,26 +1,22 @@
 const mysql = require("mysql");
-const express = require('express');
-
-const connection = require('../model/connection.js');
+const express = require("express");
+const connection = require('../model/connection.js')
 
 module.exports.homePage = (req, res) => {
     res.sendFile(__dirname + '/register.html');
 };
 
 module.exports.insertValues = (req, res) => {
-
     console.log(req.body);
-
     const { name, email, mobile } = req.body;
 
     let sql_query = `INSERT INTO STUDENTS (NAME, EMAIL, MOBILE) VALUES('${name}', '${email}', '${mobile}');`;
-
     connection.query(sql_query, (err, result) => {
         if (err) return console.log("Error while inserted data " + err);
-        res.redirect("/student");
         // res.json({ 'message ': "insert was successfull", "result": result.insertId });
-    });
 
+        res.redirect("student");
+    });
 };
 
 module.exports.getStudent = (req, res) => {
@@ -29,10 +25,10 @@ module.exports.getStudent = (req, res) => {
     connection.query(sql, (err, result) => {
         if (err) return console.log(err);
 
-        res.render(__dirname + "/students", { students: result });
+        res.render("students", { students: result });
         // res.render('students');
-    })
-}
+    });
+};
 
 module.exports.deleteStudent = (req, res) => {
     let sql = "DELETE FROM STUDENTS WHERE ID=?";
@@ -41,20 +37,23 @@ module.exports.deleteStudent = (req, res) => {
     connection.query(sql, [id], (err, result) => {
         if (err) return console.log(err);
 
-        res.redirect("/student");
-    })
-}
+        res.redirect("student");
+    });
+};
+
 module.exports.updateStudent = (req, res) => {
     let sql = "SELECT * FROM STUDENTS WHERE ID=?";
 
     let id = req.query.id;
     connection.query(sql, [id], (err, result) => {
         if (err) return console.log(err);
-        res.render(__dirname + "/update-student", { student: result });
-        
-    })
-}
+
+        res.render("update-student", { student: result });
+    });
+};
+
 module.exports.updateStudentDetails = (req, res) => {
+
     let name = req.body.name;
     let email = req.body.email;
     let mobile = req.body.mobile;
@@ -65,15 +64,15 @@ module.exports.updateStudentDetails = (req, res) => {
     connection.query(sql, [name, email, mobile, id], (err, result) => {
         if (err) return console.log(err);
 
-        res.redirect('/student');
+        res.redirect('student');
     });
-}
+};
 
 module.exports.searchStudents= (req, res)=>{
     let sql = "SELECT * FROM STUDENTS";
     connection.query(sql, (err, result)=>{
         if(err ) return console.log(err);
-        res.render(__dirname+"/search-students", {students:result});
+        res.render("search-students", {students:result});
        
     })
 }
@@ -85,6 +84,6 @@ module.exports.searchStudentsDetails =(req, res)=>{
     let sql = "SELECT * FROM STUDENTS WHERE NAME LIKE '%"+name+"%'AND EMAIL LIKE '%"+email+"%' AND MOBILE LIKE '%"+mobile+"%'";
     connection.query(sql, (err, result)=>{
         if(err)console.log(err);
-        res.render(__dirname+"/search-students", {students:result});
+        res.render("search-students", {students:result});
     })
 }
